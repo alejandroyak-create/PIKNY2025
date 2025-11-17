@@ -93,23 +93,23 @@
       max-width: 520px;
     }
 
+    /* === Лэйаут карточек === */
     .grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 24px;
       align-items: stretch;
     }
 
-    @media (max-width: 767px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
+    /* делаем .col "прозрачным" для грида, чтобы сами .card были элементами сетки */
+    .col {
+      display: contents;
     }
 
-    .col {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    @media (max-width: 767px) {
+      .grid {
+        grid-template-columns: 1fr;  /* одна колонка на телефонах */
+      }
     }
 
     .card {
@@ -119,18 +119,12 @@
       border: 1px solid var(--border-soft);
       display: flex;
       flex-direction: column;
-      height: 320px;   /* одинаковая высота для всех 4 блоков на десктопе */
+      /* БЕЗ фиксированной высоты: её даст grid (одинаковая по строке) */
     }
 
     @media (min-width: 768px) {
       .card {
         padding: 22px 22px 20px;
-      }
-    }
-
-    @media (max-width: 767px) {
-      .card {
-        height: auto;  /* на мобильных карточки растягиваются по содержимому */
       }
     }
 
@@ -174,6 +168,21 @@
 
     dd {
       font-weight: 500;
+    }
+
+    /* На узких экранах — в одну колонку, чтобы текст не "плыл" */
+    @media (max-width: 600px) {
+      dl {
+        grid-template-columns: 1fr;
+      }
+
+      dt {
+        margin-top: 6px;
+      }
+
+      dl dt:first-of-type {
+        margin-top: 0;
+      }
     }
 
     .hint {
