@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Новогодний корпоратив юридического блока</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --accent: #FC4C02;     /* акцент */
+      --text-main: #000000;  /* основной текст */
+      --text-muted: #A8A8A8; /* вторичный текст */
+      --bg-soft: #FEB79A;    /* мягкий фон / плашки */
+      --card-bg: #ffffff;
+      --border-soft: #FEB79A;
+      --radius-lg: 24px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #feb79a 0, #fff5ee 40%, #ffffff 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 960px;
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 28px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    @media (min-width: 768px) {
+      .shell {
+        padding: 40px 48px 44px;
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(252, 76, 2, 0.08);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(252, 76, 2, 0.25);
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .title {
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1.1;
+      font-weight: 650;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 767px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 20px 20px 18px;
+      border: 1px solid var(--border-soft);
+      display: flex;
+      flex-direction: column;
+      height: 320px;   /* одинаковая высота для всех 4 блоков на десктопе */
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 22px 22px 20px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .card {
+        height: auto;  /* на мобильных карточки растягиваются по содержимому */
+      }
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-main);
+    }
+
+    .card-tag {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--bg-soft);
+      color: var(--text-main);
+      white-space: nowrap;
+      opacity: 0.9;
+    }
+
+    dl {
+      display: grid;
+      grid-template-columns: minmax(0, 120px) minmax(0, 1fr);
+      row-gap: 8px;
+      column-gap: 8px;
+      font-size: 15px;
+    }
+
+    dt {
+      color: var(--text-muted);
+    }
+
+    dd {
+      font-weight: 500;
+    }
+
+    .hint {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .accent {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .link-accent {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(252, 76, 2, 0.25);
+    }
+
+    .link-accent:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    .cta-block {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+
+    .button-primary,
+    .button-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition:
+        transform 0.1s ease,
+        box-shadow 0.1s ease,
+        background 0.15s ease,
+        border-color 0.15s ease,
+        opacity 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .button-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border: 1px solid var(--accent);
+      box-shadow: 0 12px 30px rgba(252, 76, 2, 0.35);
+    }
+
+    .button-primary span.icon {
+      font-size: 16px;
+      margin-left: 2px;
+    }
+
+    .button-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(252, 76, 2, 0.45);
+    }
+
+    .button-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 18px rgba(252, 76, 2, 0.35);
+      opacity: 0.95;
+    }
+
+    .button-ghost {
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--bg-soft);
+    }
+
+    .button-ghost span.icon {
+      font-size: 16px;
+    }
+
+    .button-ghost:hover {
+      background: #fff5ee;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .note {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+    .program-list {
+      list-style: none;
+      font-size: 14px;
+      color: var(--text-main);
+      display: grid;
+      gap: 6px;
+      padding-left: 0;
+      margin-top: 4px;
+    }
+
+    .program-list li::before {
+      content: "•";
+      display: inline-block;
+      margin-right: 6px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .price-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 4px 0 0;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    .price-list li + li {
+      margin-top: 2px;
+    }
+
+    .price-note {
+      display: block;
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.08),
+        rgba(0, 0, 0, 0)
+      );
+      margin: 24px 0 20px;
+    }
+
+    .footnote {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      opacity: 0.9;
+    }
+
+    @media (max-width: 480px) {
+      .footnote {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Новогодний корпоратив · юридический блок
+    </div>
+
+    <header class="header">
+      <h1 class="title">Юристы тоже умеют праздновать.</h1>
+      <p class="subtitle">
+        Закроем все вопросы года &mdash; хотя бы не процессуальные. Вечер для своих: без протоколов,
+        но с шампанским и танцами.
+      </p>
+    </header>
+
+    <section class="grid" aria-label="Информация о событии">
+      <div class="col">
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title">Главное</h2>
+            <span class="card-tag">Для сотрудников юридического блока</span>
+          </div>
+          <dl>
+            <dt>Дата и время</dt>
+            <dd>20 декабря 2025, 19:00&nbsp;&mdash; 23:30</dd>
+
+            <dt>Место</dt>
+            <dd>Москва, &laquo;Ресторан&raquo;</dd>
+
+            <dt>Стоимость</dt>
+            <dd>
+              <ul class="price-list">
+                <li><span class="accent">Группа 1</span> &mdash; 12 000&nbsp;₽</li>
+                <li><span class="accent">Группа 2</span> &mdash; 10 500&nbsp;₽</li>
+                <li><span class="accent">Группа 3</span> &mdash; 7 000&nbsp;₽</li>
+                <li><span class="accent">Группа 4</span> &mdash; 3 500&nbsp;₽</li>
+              </ul>
+              <span class="price-note">группа определяется по должности</span>
+            </dd>
+
+            <dt>Дресс-код</dt>
+            <dd>Smart casual с новогодним акцентом</dd>
+          </dl>
+
+          <p class="hint">
+           
+            </a>.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title">Программа вечера</h2>
+            <span class="card-tag">Без повесток и повесток дня</span>
+          </div>
+          <ul class="program-list">
+            <li>Welcome-зона, шампанское и нетворкинг</li>
+            <li>Закуски</li>
+            <li>Коктейли</li>
+            <li>DJ-сет, танцы и неформальное общение</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="col">
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title">Как присоединиться</h2>
+            <span class="card-tag">Займёт пару кликов</span>
+          </div>
+
+          <div class="cta-block">
+            <div class="button-row">
+              <!-- Ссылка на оплату (замените при необходимости) -->
+              <a
+                class="button-primary"
+                href="https://example.com/payment"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Оплатить участие
+                <span class="icon">↗</span>
+              </a>
+
+              <!-- Реальная ссылка на Telegram-чат -->
+              <a
+                class="button-ghost"
+                href="https://t.me/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Я оплатил
+                <span class="icon">💬</span>
+              </a>
+            </div>
+
+            <p class="note">
+              После оплаты, пожалуйста, свяжитель с администратором&mdash;
+              это поможет сверить список гостей и не устраивать допрос при входе.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title">Оргвопросы</h2>
+          </div>
+          <p class="note">
+            Если у вас есть ограничения по питанию, специальные пожелания
+            или хотите помочь с организацией, напишите в Telegram-группу
+            или напрямую организаторам.
+            <br /><br />
+            Чем раньше вы отметитесь, тем проще будет подготовить вечер
+            без форс-мажоров.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <footer class="footnote">
+      <span>Юридический блок · Новый год 2025</span>
+      <span>Без протоколов, но по всем правилам хорошего вечера</span>
+    </footer>
+  </main>
+</body>
+</html>
