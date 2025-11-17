@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --accent: #FC4C02;     /* акцент */
-      --text-main: #000000;  /* основной текст */
-      --text-muted: #A8A8A8; /* вторичный текст */
-      --bg-soft: #FEB79A;    /* мягкий фон / плашки */
+      --accent: #FC4C02;
+      --text-main: #000000;
+      --text-muted: #A8A8A8;
+      --bg-soft: #FEB79A;
       --card-bg: #ffffff;
       --border-soft: #FEB79A;
       --radius-lg: 24px;
@@ -22,26 +22,22 @@
       padding: 0;
     }
 
-   body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top left, #feb79a 0, #fff5ee 40%, #ffffff 100%);
-  color: var(--text-main);
-  min-height: 100vh;
-  margin: 0;
-  padding: 16px;
-}
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #feb79a 0, #fff5ee 40%, #ffffff 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding: 16px;
+    }
 
-.shell {
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;              /* центрируем по горизонтали */
-  background: #ffffff;
-  border-radius: 32px;
-  padding: 28px;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-    order: 1px solid rgba(0, 0, 0, 0.05);
+    .shell {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 24px 18px 32px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     @media (min-width: 768px) {
@@ -94,15 +90,16 @@
       max-width: 520px;
     }
 
-    /* ===== ЛЭЙАУТ КАРТОЧЕК ===== */
+    /* Сетка: на телефоне ВСЁ в одну колонку,
+       на десктопе – две колонки, но без фиксированной высоты */
     .grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 24px;
-      align-items: stretch;
+      align-items: start;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 900px) {
       .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -111,18 +108,10 @@
     .card {
       background: var(--card-bg);
       border-radius: var(--radius-lg);
-      padding: 20px 20px 18px;
+      padding: 20px 18px 18px;
       border: 1px solid var(--border-soft);
       display: flex;
       flex-direction: column;
-    }
-
-    /* одинаковая высота карточек только на десктопе,
-       на телефоне — автоматическая по содержимому */
-    @media (min-width: 900px) {
-      .card {
-        min-height: 260px;
-      }
     }
 
     @media (min-width: 768px) {
@@ -173,8 +162,8 @@
       font-weight: 500;
     }
 
-    /* На узких экранах dl в одну колонку */
-    @media (max-width: 600px) {
+    /* На очень узком экране dl сначала идёт "заголовок, потом значение" блоками */
+    @media (max-width: 480px) {
       dl {
         grid-template-columns: 1fr;
       }
@@ -416,7 +405,6 @@
 
         <div class="cta-block">
           <div class="button-row">
-            <!-- Ссылка на оплату (замени при необходимости) -->
             <a
               class="button-primary"
               href="https://example.com/payment"
@@ -427,7 +415,6 @@
               <span class="icon">↗</span>
             </a>
 
-            <!-- Реальная ссылка на Telegram-чат -->
             <a
               class="button-ghost"
               href="https://t.me/+dpWNLdfzvbAxMGYy"
@@ -446,7 +433,7 @@
         </div>
       </article>
 
-      <!-- 3. ПРОГРАММА ВЕЧЕРА -->
+      <!-- 3. ПРОГРАММА -->
       <article class="card">
         <div class="card-header">
           <h2 class="card-title">Программа вечера</h2>
