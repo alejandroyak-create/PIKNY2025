@@ -344,6 +344,12 @@
         align-items: flex-start;
       }
     }
+    /* Одинаковая высота карточек только на больших экранах */
+@media (min-width: 1024px) {
+  .card {
+    min-height: 280px;  /* подбери число под свой вкус: 260–320 */
+  }
+}
   </style>
 </head>
 <body>
