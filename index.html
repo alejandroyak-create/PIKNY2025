@@ -22,31 +22,31 @@
       padding: 0;
     }
 
-  body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top left, #feb79a 0, #fff5ee 40%, #ffffff 100%);
-  color: var(--text-main);
-  min-height: 100vh;
-  margin: 0;           /* убираем внешние отступы */
-  padding: 0;          /* и внутренние, чтобы не съезжало */
-}
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #feb79a 0, #fff5ee 40%, #ffffff 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
 
-.shell {
-  max-width: 960px;
-  margin: 16px auto;   /* одинаковые отступы слева/справа */
-  background: #ffffff;
-  border-radius: 32px;
-  padding: 24px 20px 32px;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
+    .shell {
+      max-width: 960px;
+      margin: 16px auto;
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 24px 20px 32px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
 
-@media (min-width: 768px) {
-  .shell {
-    margin: 32px auto;
-    padding: 40px 48px 44px;
-  }
-}
+    @media (min-width: 768px) {
+      .shell {
+        margin: 32px auto;
+        padding: 40px 48px 44px;
+      }
+    }
 
     .badge {
       display: inline-flex;
@@ -92,13 +92,12 @@
       max-width: 520px;
     }
 
-    /* Сетка: на телефоне ВСЁ в одну колонку,
-       на десктопе – две колонки, но без фиксированной высоты */
+    /* Сетка: на телефоне одна колонка, на десктопе две */
     .grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 24px;
-      align-items: start;
+      align-items: stretch;
     }
 
     @media (min-width: 900px) {
@@ -119,6 +118,13 @@
     @media (min-width: 768px) {
       .card {
         padding: 22px 22px 20px;
+      }
+    }
+
+    /* Одинаковая минимальная высота карточек только на больших экранах */
+    @media (min-width: 1024px) {
+      .card {
+        min-height: 280px;
       }
     }
 
@@ -164,7 +170,6 @@
       font-weight: 500;
     }
 
-    /* На очень узком экране dl сначала идёт "заголовок, потом значение" блоками */
     @media (max-width: 480px) {
       dl {
         grid-template-columns: 1fr;
@@ -344,12 +349,6 @@
         align-items: flex-start;
       }
     }
-    /* Одинаковая высота карточек только на больших экранах */
-@media (min-width: 1024px) {
-  .card {
-    min-height: 280px;  /* подбери число под свой вкус: 260–320 */
-  }
-}
   </style>
 </head>
 <body>
@@ -376,7 +375,7 @@
         </div>
         <dl>
           <dt>Дата и время</dt>
-          <dd>20 декабря 2025, 19:00&nbsp;&mdash; 23:30</dd>
+          <dd>03 декабря 2025, 19:00&nbsp;&mdash; 23:30</dd>
 
           <dt>Место</dt>
           <dd>Москва, &laquo;Ресторан&raquo;</dd>
@@ -384,7 +383,7 @@
           <dt>Стоимость</dt>
           <dd>
             <ul class="price-list">
-              <li><span class="accent">Рук. депаратмента</span> &mdash; 12 000&nbsp;₽</li>
+              <li><span class="accent">Рук. департамента</span> &mdash; 12 000&nbsp;₽</li>
               <li><span class="accent">Заместитель</span> &mdash; 10 500&nbsp;₽</li>
               <li><span class="accent">Рук. направления</span> &mdash; 7 000&nbsp;₽</li>
               <li><span class="accent">Сотрудник</span> &mdash; 3 500&nbsp;₽</li>
@@ -395,8 +394,6 @@
           <dt>Дресс-код</dt>
           <dd>Smart casual с новогодним акцентом</dd>
         </dl>
-          </a>.
-        </p>
       </article>
 
       <!-- 2. КАК ПРИСОЕДИНИТЬСЯ -->
@@ -430,7 +427,7 @@
           </div>
 
           <p class="note">
-            После оплаты администратор предоставит вам ссылка на чат корпаратива.
+            После оплаты администратор предоставит вам ссылку на чат корпоратива.
           </p>
         </div>
       </article>
@@ -449,7 +446,7 @@
         </ul>
       </article>
 
-        <!-- 4. ОРГВОПРОСЫ -->
+      <!-- 4. ОРГВОПРОСЫ -->
       <article class="card">
         <div class="card-header">
           <h2 class="card-title">Оргвопросы</h2>
@@ -463,7 +460,7 @@
         <div class="button-row" style="margin-top: 10px;">
           <a
             class="button-ghost"
-            href="https://t.me/"  
+            href="https://t.me/"  <!-- сюда подставь ссылку на администратора -->
             target="_blank"
             rel="noreferrer noopener"
           >
@@ -477,7 +474,7 @@
     <div class="divider" aria-hidden="true"></div>
 
     <footer class="footnote">
-      <span>Юридический блок · Новый год 2025</span>
+      <span>Юридический блок · Новый год 2026</span>
       <span>Без протоколов, но по всем правилам хорошего вечера</span>
     </footer>
   </main>
